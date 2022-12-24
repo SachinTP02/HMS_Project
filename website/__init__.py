@@ -21,7 +21,7 @@ def create_app():
 
     from .views import views
     from .auth import auth  
-    if not path.exists('website/' + DB_NAME):
+    if not path.exists("instance\\HMS.db"):
         with app.app_context():
             from .models import User
             db.create_all()

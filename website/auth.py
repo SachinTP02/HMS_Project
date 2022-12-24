@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
+
 auth = Blueprint('auth',__name__)
 
 @auth.route('/login', methods=['GET','POST'])
@@ -11,6 +12,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
@@ -37,7 +39,9 @@ def sign_up():
         first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-
+        phno = request.form.get('phno')
+        age = request.form.get('age')
+        sex = request.form.get('sex')
         
         user = User.query.filter_by(email=email).first()
         if user:
@@ -50,8 +54,10 @@ def sign_up():
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
+        elif len(phno) != 10:
+            flash('Phone number is invalid', category='error')
         else:
-            new_user = User(email=email,first_name=first_name,password=generate_password_hash(password1, method='sha256'))
+            new_user = User(email=email,first_name=first_name,password=generate_password_hash(password1, method='sha256'),age=age,sex=sex,phno=phno)
             db.session.add(new_user)
             db.session.commit()
             

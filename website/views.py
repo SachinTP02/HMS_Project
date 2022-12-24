@@ -9,6 +9,7 @@ def home():
     return render_template("home.html")
 
 @views.route('/home')
+@login_required
 def hhome():
     return render_template("home.html")
 

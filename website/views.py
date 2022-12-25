@@ -22,3 +22,15 @@ def patient_home():
 def ent_dpmt():
     return render_template("ent_dpmt.html")
 
+@views.route('/physician_dpmt')
+def physician_dpmt():
+    return render_template("physician_dpmt.html")
+
+@views.route('/pediatrician_dpmt')
+def pediatrician_dpmt():
+    return render_template("pediatrician_dpmt.html")
+
+@views.route('/dentist_dpmt')
+def dentist_dpmt():
+    return render_template("dentist_dpmt.html")
+

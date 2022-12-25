@@ -1,71 +1,72 @@
 {% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
     content %}
     <form method="POST">
-      <h3 align="center">Patient-Sign Up</h3>
+      <h3 align="center">Doctor-Sign Up</h3>
       <div class="form-group">
         <label for="email">Email Address</label>
         <input
           type="email"
           class="form-control"
-          id="email"
-          name="email"
+          id="doc_email"
+          name="doc_email"
           placeholder="Enter email"
         />
       </div>
       <div class="form-group">
-        <label for="firstName">First Name</label>
+        <label for="doc_firstName">First Name</label>
         <input
           type="text"
           class="form-control"
-          id="firstName"
-          name="firstName"
+          id="doc_firstName"
+          name="doc_firstName"
           placeholder="Enter first name"
         />
       </div>
       <div class="form-group">
-        <label for="age">Age</label>
+        <label for="doc_id">Your Unique I D</label>
         <input
           type="number"
           class="form-control"
-          id="age"
-          name="age"
-          placeholder="Enter your age"
+          id="doc_id"
+          name="doc_id"
+          placeholder="Enter your unidue I D"
         />
       </div><div class="form-group">
-        <label for="sex">Gender</label><br>
-        <select name="sex">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
+        <label for="domain">Domain of Specialization</label><br>
+        <select name="domain">
+          <option value="GeneralPhysician">GeneralPhysician</option>
+          <option value="Pediatrician">Pedigreeian</option>
+          <option value="Dentist">Dentist</option>
+          <option value="ENT">ENT</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="phno">Phone Number</label>
+        <label for="doc_phno">Phone Number</label>
         <input
           type="text"
           class="form-control"
-          id="phno"
-          name="phno"
+          id="doc_phno"
+          name="doc_phno"
           placeholder="Enter first name"
         />
       </div>
       <div class="form-group">
-        <label for="password1">Password</label>
+        <label for="doc_password1">Password</label>
         <input
           type="password"
           class="form-control"
-          id="password1"
-          name="password1"
+          id="doc_password1"
+          name="doc_password1"
           placeholder="Enter password"
         />
       </div>
       <div class="form-group">
-        <label for="password2">Password (Confirm)</label>
+        <label for="doc_password2">Password (Confirm)</label>
         <input
           type="password"
           class="form-control"
-          id="password2"
-          name="password2"
+          id="doc_password2"
+          name="doc_password2"
           placeholder="Confirm password"
         />
       </div>

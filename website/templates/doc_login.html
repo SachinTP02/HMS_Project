@@ -1,14 +1,14 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
     %}
     <form method="POST">
-      <h3 align="center">Patient Login</h3>
+      <h3 align="center">Doctor Login</h3>
       <div class="form-group">
         <label for="email">Email Address</label>
         <input
           type="email"
           class="form-control"
-          id="email"
-          name="email"
+          id="doc_email"
+          name="doc_email"
           placeholder="Enter email"
         />
       </div>
@@ -17,8 +17,8 @@
         <input
           type="password"
           class="form-control"
-          id="password"
-          name="password"
+          id="doc_password"
+          name="doc_password"
           placeholder="Enter password"
         />
       </div>

@@ -23,7 +23,7 @@ def create_app():
     from .auth import auth  
     if not path.exists("instance\\HMS.db"):
         with app.app_context():
-            from .models import User
+            from .models import User, Doctor
             db.create_all()
             print('Created Database!')
 

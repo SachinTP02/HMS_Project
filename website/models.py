@@ -11,12 +11,17 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     password = db.Column(db.String(150))
 
-def __init__(self,email,age,sex,phno,first_name,password):
-    self.email = email
-    self.age = age
-    self.sex = sex
-    self.phno = phno
-    self.first_name = first_name
-    self.password = password
+
+
+class Doctor(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150), unique=True)
+    doc_id = db.Column(db.Integer, unique=True)
+    domain = db.Column(db.String(150))
+    phno = db.Column(db.Integer)
+    first_name = db.Column(db.String(150))
+    password = db.Column(db.String(150)) 
+    varified = db.Column(db.String(150), default=False)
+
 
 

@@ -18,3 +18,7 @@ def hhome():
 def patient_home():
     return render_template("patient_home.html")
 
+@views.route('/ent_dpmt')
+def ent_dpmt():
+    return render_template("ent_dpmt.html")
+

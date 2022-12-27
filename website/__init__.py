@@ -8,22 +8,18 @@ db = SQLAlchemy()
 DB_NAME = "HMS.db"
 
 
+
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 's@chin002'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
-    
-
-
-    
-
     from .views import views
     from .auth import auth  
     if not path.exists("instance\\HMS.db"):
         with app.app_context():
-            from .models import User, Doctor
+            from .models import User, Doctor, PatientComments
             db.create_all()
             print('Created Database!')
 
@@ -38,9 +34,6 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
  
-    
-
-
     return app
 
 

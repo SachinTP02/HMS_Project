@@ -21,7 +21,16 @@ class Doctor(db.Model, UserMixin):
     phno = db.Column(db.Integer)
     first_name = db.Column(db.String(150))
     password = db.Column(db.String(150)) 
-    varified = db.Column(db.String(150), default=False)
+    varified = db.Column(db.Boolean, default=False)
+
+
+
+class PatientComments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150))
+    comments = db.Column(db.String(250))
+    domain = db.Column(db.String(50))
+    checked = db.Column(db.Boolean, default=False)
 
 
 

@@ -34,3 +34,7 @@ def pediatrician_dpmt():
 def dentist_dpmt():
     return render_template("dentist_dpmt.html")
 
+@views.route('/ent_appointment')
+def ent_appointment():
+    return render_template("ent_appointment.html")
+

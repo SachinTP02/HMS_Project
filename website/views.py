@@ -38,3 +38,15 @@ def dentist_dpmt():
 def ent_appointment():
     return render_template("ent_appointment.html")
 
+@views.route('/physician_appointment')
+def physician_appointment():
+    return render_template("physician_appointment.html")
+
+@views.route('/pediatrician_appointment')
+def pediatrician_appointment():
+    return render_template("pediatrician_appointment.html")
+
+@views.route('/dentist_appointment')
+def dentist_appointment():
+    return render_template("dentist_appointment.html")
+

@@ -63,7 +63,7 @@
 </div> 
 <a href="#contact">CONTACT</a>
 <a href="#about">ABOUT</a>
-<a href="#" title="SignIn" style="float:right;"><i class="fa fa-user"></i></a>
+<a href="/logout" title="LogOut" style="float:right;"><i class="fa fa-user"></i></a>
 <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 </header>
@@ -94,15 +94,7 @@
 <h4>REQUEST FOR YOUR</h4>
 <h1>Consultation</h1>
 
-<select name="date">
-  <option value="SUNDAY">SUNDAY</option>
-  <option value="MONDAY">MONDAY</option>
-  <option value="TUESDAY">TUESDAY</option>
-  <option value="WEDNESDAY">WEDNESDAY</option>
-  <option value="THURSDAY">THURSDAY</option>
-  <option value="FRIDAY">FRIDAY</option>
-  <option value="SATURDAY">SATURDAY</option>
-  </select>
+<form method="POST">
 <select name="domain">
 <option value="General Physician">General Physician</option>
 <option value="Pediatrician">Pediatrician</option>
@@ -110,6 +102,7 @@
 <option value="ENT">ENT</option>
 </select>
 <button type="submit" class="btn2">BOOK APPOINTMENT</button>
+</form>
 </div>
 </td>
 <td>

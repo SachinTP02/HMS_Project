@@ -21,7 +21,7 @@ class Doctor(db.Model, UserMixin):
     phno = db.Column(db.Integer)
     first_name = db.Column(db.String(150))
     password = db.Column(db.String(150)) 
-    varified = db.Column(db.Boolean, default=False)
+    varified = db.Column((db.String(150)), default='False')
 
 
 
@@ -30,7 +30,16 @@ class PatientComments(db.Model):
     email = db.Column(db.String(150))
     comments = db.Column(db.String(250))
     domain = db.Column(db.String(50))
-    checked = db.Column(db.Boolean, default=False)
+    checked = db.Column((db.String(150)), default='False')
+
+class AppointmentBooking(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150))
+    doctor = db.Column(db.String(150))
+    domain = db.Column(db.String(50))
+    day = db.Column(db.String(150))
+    slot = db.Column(db.String(150))
+    status = db.Column(db.String(150), default='False')
 
 
 

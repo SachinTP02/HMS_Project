@@ -3,6 +3,7 @@ from .models import User, Doctor, PatientComments, AppointmentBooking
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from sqlalchemy import text
 
 
 auth = Blueprint('auth',__name__)
@@ -37,8 +38,7 @@ def doc_login():
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category = 'success')
                 session['email'] = email
-                return redirect(url_for('views.patient_home')) 
-                login_user(user, remember=True)
+                return redirect(url_for("views.doc_home")) 
             else:
                 flash('Incorrect password, try again.', category = 'error')
         else:
@@ -224,30 +224,41 @@ def dentist_appointment():
     if request.method == 'POST':
         name = request.form.get('button')
         email=session['email']
-        if name=='jacob':
-            doctor='Dr.JACOB'
-            domain='Dentist'
-            day='Monday'
-            slot='9-4'
-        elif name=='seema':
-            doctor='Dr.SEEMA'
-            domain='Dentist'
-            day='Monday'
-            slot='2-6'
-        elif name=='kasim':
-            doctor='Dr.KASIM'
-            domain='Dentist'
-            day='Friday'
-            slot='2-7'
-        elif name=='vyga':
-            doctor='Dr.VYGA'
-            domain='Dentist'
-            day='Sunday'
-            slot='10-1'
-        new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
-        db.session.add(new_app)
-        db.session.commit()
-        return render_template("dentist_appointment.html")
+        user = AppointmentBooking.query.filter_by(email=email).first()
+        if not user:           
+            if name=='jacob':
+                doctor='Dr.JACOB'
+                domain='Dentist'
+                day='Monday'
+                slot='9-4'
+            elif name=='seema':
+                doctor='Dr.SEEMA'
+                domain='Dentist'
+                day='Monday'
+                slot='2-6'
+            elif name=='kasim':
+                doctor='Dr.KASIM'
+                domain='Dentist'
+                day='Friday'
+                slot='2-7'
+            elif name=='vyga':
+                doctor='Dr.VYGA'
+                domain='Dentist'
+                day='Sunday'
+                slot='10-1'
+            new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
+            db.session.add(new_app)
+            db.session.commit()
+        if user:
+            htmlTrippleQuoted = """
+                <html>
+                <head></head>
+                <body>
+                <script>alert("Your Booking is under Process")</script>
+                </body>
+                </html>
+                """
+            return render_template("dentist_appointment.html")
 
 @auth.route('/ent_appointment', methods=['GET','POST'])
 def ent_appointment():
@@ -255,30 +266,33 @@ def ent_appointment():
     if request.method == 'POST':
         name = request.form.get('button')
         email=session['email']
-        if name=='vinod':
-            doctor='Dr.VINOD'
-            domain='ENT'
-            day='Sunday'
-            slot='3-7'
-        elif name=='gayathri':
-            doctor='Dr.GAYATHRI'
-            domain='ENT'
-            day='Monday'
-            slot='10-2'
-        elif name=='kala':
-            doctor='Dr.KALA'
-            domain='ENT'
-            day='Thursday'
-            slot='2-7'
-        elif name=='girija':
-            doctor='Dr.GIRIJA'
-            domain='ENT'
-            day='Saturday'
-            slot='9-11'
-        new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
-        db.session.add(new_app)
-        db.session.commit()
-        return render_template("ent_appointment.html")
+        user = AppointmentBooking.query.filter_by(email=email).first()
+        if not user:
+            if name=='vinod':
+                doctor='Dr.VINOD'
+                domain='ENT'
+                day='Sunday'
+                slot='3-7'
+            elif name=='gayathri':
+                doctor='Dr.GAYATHRI'
+                domain='ENT'
+                day='Monday'
+                slot='10-2'
+            elif name=='kala':
+                doctor='Dr.KALA'
+                domain='ENT'
+                day='Thursday'
+                slot='2-7'
+            elif name=='girija':
+                doctor='Dr.GIRIJA'
+                domain='ENT'
+                day='Saturday'
+                slot='9-11'
+            new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
+            db.session.add(new_app)
+            db.session.commit()
+        
+            return render_template("ent_appointment.html")
 
 @auth.route('/pediatrician_appointment', methods=['GET','POST'])
 def pediatrician_appointment():
@@ -286,30 +300,33 @@ def pediatrician_appointment():
     if request.method == 'POST':
         name = request.form.get('button')
         email=session['email']
-        if name=='anush':
-            doctor='Dr.ANUSH'
-            domain='Pediatrician'
-            day='Sunday'
-            slot='4-7'
-        elif name=='sreelata':
-            doctor='Dr.GSREELATA'
-            domain='Pediatrician    '
-            day='Wednesday'
-            slot='9-11'
-        elif name=='latha':
-            doctor='Dr.LATHA'
-            domain='Pediatrician'
-            day='Thursday'
-            slot='2-7'
-        elif name=='leka':
-            doctor='Dr.LEKA'
-            domain='Pediatrician'
-            day='Friday'
-            slot='9-11'
-        new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
-        db.session.add(new_app)
-        db.session.commit()
-        return render_template("ent_appointment.html")
+        user = AppointmentBooking.query.filter_by(email=email).first()
+        if user:
+            if name=='anush':
+                doctor='Dr.ANUSH'
+                domain='Pediatrician'
+                day='Sunday'
+                slot='4-7'
+            elif name=='sreelata':
+                doctor='Dr.GSREELATA'
+                domain='Pediatrician    '
+                day='Wednesday'
+                slot='9-11'
+            elif name=='latha':
+                doctor='Dr.LATHA'
+                domain='Pediatrician'
+                day='Thursday'
+                slot='2-7'
+            elif name=='leka':
+                doctor='Dr.LEKA'
+                domain='Pediatrician'
+                day='Friday'
+                slot='9-11'
+            new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
+            db.session.add(new_app)
+            db.session.commit()
+        if user:
+            return render_template("ent_appointment.html")
 
 @auth.route('/physician_appointment', methods=['GET','POST'])
 def physician_appointment():
@@ -317,27 +334,30 @@ def physician_appointment():
     if request.method == 'POST':
         name = request.form.get('button')
         email=session['email']
-        if name=='raji':
-            doctor='Dr.RAJI'
-            domain='Physician'
-            day='Tuesday'
-            slot='8-12'
-        elif name=='jitin':
-            doctor='Dr.JITIN'
-            domain='Physician'
-            day='Wednesday'
-            slot='11-4'
-        elif name=='philips':
-            doctor='Dr.PHILIPS'
-            domain='Physician'
-            day='Friday'
-            slot='2-7'
-        elif name=='simon':
-            doctor='Dr.SIMON'
-            domain='Physician'
-            day='Saturday'
-            slot='9-11'
-        new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
-        db.session.add(new_app)
-        db.session.commit()
-        return render_template("ent_appointment.html")
+        user = AppointmentBooking.query.filter_by(email=email).first()
+        if user:
+            if name=='raji':
+                doctor='Dr.RAJI'
+                domain='Physician'
+                day='Tuesday'
+                slot='8-12'
+            elif name=='jitin':
+                doctor='Dr.JITIN'
+                domain='Physician'
+                day='Wednesday'
+                slot='11-4'
+            elif name=='philips':
+                doctor='Dr.PHILIPS'
+                domain='Physician'
+                day='Friday'
+                slot='2-7'
+            elif name=='simon':
+                doctor='Dr.SIMON'
+                domain='Physician'
+                day='Saturday'
+                slot='9-11'
+            new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
+            db.session.add(new_app)
+            db.session.commit()
+        if user:
+            return render_template("ent_appointment.html")

@@ -18,6 +18,10 @@ def hhome():
 def patient_home():
     return render_template("patient_home.html")
 
+@views.route('/doc_home')
+def doc_home():
+    return render_template("doc_home.html")
+
 @views.route('/ent_dpmt')
 def ent_dpmt():
     return render_template("ent_dpmt.html")
@@ -49,4 +53,12 @@ def pediatrician_appointment():
 @views.route('/dentist_appointment')
 def dentist_appointment():
     return render_template("dentist_appointment.html")
+
+@views.route('/appointment_status')
+def appointment_status():
+    return render_template("appointment_status.html")
+
+@views.route('/about')
+def about():
+    return render_template("about.html")
 

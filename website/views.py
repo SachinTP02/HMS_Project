@@ -15,10 +15,12 @@ def hhome():
 
 
 @views.route('/patient_home')
+
 def patient_home():
     return render_template("patient_home.html")
 
 @views.route('/doc_home')
+
 def doc_home():
     return render_template("doc_home.html")
 

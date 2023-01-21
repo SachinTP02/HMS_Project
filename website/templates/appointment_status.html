@@ -21,25 +21,17 @@
         <div class="container">
           <div class="pricing-table">
           <ul class="col-price">
-            <li class="header">Otolaryngologist</li>
-            <li class="price"><span>Dr.VINOD</span></li>
-            <li>Spc. Endoscopic Surgeries</li>
-            <li>vinod999@gmail.com</li>
-            <li> SUNDAY</li>
-            <li>Slot : 3-7(PM)</li>
-            <li class="get-it"><form method="POST"><button onclick="myFunction()" type="submit" id="button" name="button" value="vinod">STATUS</button></form></li>
-            </ul>
-            <ul class="col-price">
-            <li class="header">Dentist</li>
-              <li class="price"><span>Dr.GAYATHRI</span></li>
-            <li>Spc. Ear, nose, throat</li>
-            <li>gayathri999@gmail.com</li>
-            <li> MONDAY</li>
-            <li>Slot : 10-2(AM)</li>
-            <li class="get-it"><form method="POST"><button onclick="myFunction()" type="submit" id="button" name="button" value="gayathri">STATUS</button></form></li>
-            </ul>
-            
-            
+            {% for appointmentbooking in user.appointments %}
+            <li class="header">{{appointmentbooking.domain}}</li>
+            <li class="price"><span>{{appointmentbooking.doctor}}</span></li>
+            <li>{{appointmentbooking.day}}</li>
+            <li>{{appointmentbooking.slot}}</li>
+            {% if appointmentbooking.status == 'True'%}
+              <li class="get-it" onclick="myFunction1()"><button>STATUS</button></li>
+            {% elif appointmentbooking.status == 'False' %} 
+              <li class="get-it" onclick="myFunction2()"><button>STATUS</button></li>
+            {% endif %}
+            {% endfor %}
             </ul>
           </div>
         </div>
@@ -61,8 +53,11 @@
 <!-- partial -->
 
 <script>
-  function myFunction() {
-    alert("Booking details submitted Successfully!");
+  function myFunction1() {
+    alert("No Worries Yet, But do please check the status once in a while");
+  }
+  function myFunction2() {
+    alert("sorry to inform you, your appointment got cancelled");
   }
   </script>
 </body>

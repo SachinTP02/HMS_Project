@@ -10,6 +10,8 @@ class User(db.Model, UserMixin):
     phno = db.Column(db.Integer)
     first_name = db.Column(db.String(150))
     password = db.Column(db.String(150))
+    comments = db.relationship('PatientComments')
+    appointments = db.relationship('AppointmentBooking')
 
 
 
@@ -27,19 +29,19 @@ class Doctor(db.Model, UserMixin):
 
 class PatientComments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(150))
+    patient_email = db.Column(db.String(150), db.ForeignKey('user.email'))
     comments = db.Column(db.String(250))
     domain = db.Column(db.String(50))
     checked = db.Column((db.String(150)), default='False')
 
 class AppointmentBooking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(150))
+    patient_email = db.Column(db.String(150), db.ForeignKey('user.email'))
     doctor = db.Column(db.String(150))
     domain = db.Column(db.String(50))
     day = db.Column(db.String(150))
     slot = db.Column(db.String(150))
-    status = db.Column(db.String(150), default='False')
+    status = db.Column(db.String(150), default='True')
 
 
 

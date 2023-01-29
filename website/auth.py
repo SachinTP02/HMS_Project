@@ -18,8 +18,8 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 
-                session['email'] = email
-                return redirect(url_for('views.patient_home', user=current_user)) 
+                session['pemail'] = email
+                return redirect(url_for('views.patient_home', user=user)) 
                 login_user(user, remember=True)
             else:
                 flash('Incorrect password, try again.', category = 'error')
@@ -38,8 +38,15 @@ def doc_login():
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category = 'success')
                 
-                session['email'] = email
-                return redirect(url_for("views.doc_home", doc=email, user=current_user)) 
+                session['demail'] = email
+                nametest = user.first_name.upper()
+                name = "Dr."+nametest
+                
+                dom = Doctor.query.filter_by(email = email).first()
+                comment = PatientComments.query.filter_by(checked = 'False', domain =dom.domain).all()
+                book = AppointmentBooking.query.filter_by(doctor = name).first()
+                
+                return render_template("doc_home.html", user = user, book = book , comments = comment)
             else:
                 flash('Incorrect password, try again.', category = 'error')
         else:
@@ -113,12 +120,8 @@ def doc_sign_up():
             new_doc = Doctor(email=email,first_name=first_name,password=generate_password_hash(password1, method='sha256'),doc_id=doc_id,domain=domain,phno=phno)
             db.session.add(new_doc)
             db.session.commit()
-            
-            
             flash('account created ', category='success')
-            return redirect(url_for('auth.doc_login'))
-            
-            
+            return redirect(url_for('auth.doc_login'))        
     return render_template("doc_sign_up.html")
 
 
@@ -180,106 +183,145 @@ def ent_dpmt():
 
 @auth.route('/doc_home', methods=['GET','POST']) 
 def doc_home():
-
+    print("working")
     if request.method == 'POST':
-        x = request.form.get('doc_name')
-        if x == 'RAJI':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.RAJI').all()
-            for new in newx:
-                new.status = 'False'
+        y = request.form.get('cmnt')
+        z = request.form.get('cmnt_id')
+        print(y)
+        print("working")
+        print(z)
+        if (y is None):
+            x = request.form.get('doc_name')
+            sess=session['demail']
+            user = Doctor.query.filter_by(email=sess).first()
+            comment = PatientComments.query.filter_by(checked = 'False').all() 
+            if x == 'Dr.RAJI':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.RAJI').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.RAJI').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.JITIN':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.JITIN').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit() 
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.JITIN').first() 
+                return render_template("doc_home.html", user=user, book=book, comment=comment)  
+            elif x == 'Dr.PHILIPS':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.PHILIPS').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.PHILIPS').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.SIMON':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.SIMON').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.SIMON').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.ANUSH':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.ANUSH').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.ANUSH').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.SREELATA':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.SREELATA').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.SREELATA').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.LATHA':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.LATHA').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.LATHA').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.LEKA':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.LEKA').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.LEKA').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.GIRIJA':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.GIRIJA').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.GIRIJA').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.JAKOB':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.JAKOB').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.JAKOB').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.SEEMA':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.SEEMA').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.SEEMA').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.KASIM':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.KASIM').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.KASIM').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.VYGA':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.VYGA').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.VYGA').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.VINOD':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.VINOD').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.VINOD').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.GAYATHRI':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.GAYATHRI').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.GAYATHRI').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            elif x == 'Dr.KALA':
+                newx = AppointmentBooking.query.filter_by(doctor='Dr.KALA').all()
+                for new in newx:
+                    new.status = 'False'
+                db.session.commit()
+                book = AppointmentBooking.query.filter_by(doctor = 'Dr.KALA').first()
+                return render_template("doc_home.html", user=user, book=book, comment=comment)
+            return render_template("doc_home.html", user=user)
+
+
+        else:
+            book = AppointmentBooking.query.all()
+            sess =  session['demail']
+            dom = Doctor.query.filter_by(email = sess).first()
+            comment = PatientComments.query.filter_by(checked = 'False', domain =dom.domain).all()
+            new = PatientComments.query.filter_by(id = z).first()
+            new.reply = y
+            new.checked = 'True'
             db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'JITIN':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.JITIN').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()  
-            return render_template("doc_home.html", user=current_user)  
-        elif x == 'PHILIPS':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.PHILIPS').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'SIMON':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.SIMON').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'ANUSH':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.ANUSH').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'SREELATA':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.SREELATA').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'LATHA':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.LATHA').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'LEKA':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.LEKA').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'GIRIJA':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.GIRIJAZ').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'JAKOB':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.JAKOB').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'SEEMA':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.SEEMA').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'KASIM':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.KASIM').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'VYGA':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.VYGA').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'VINOD':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.VINOD').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'GAYATHRI':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.GAYATHRI').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        elif x == 'KALA':
-            newx = AppointmentBooking.query.filter_by(doctor='Dr.KALA').all()
-            for new in newx:
-                new.status = 'False'
-            db.session.commit()
-            return render_template("doc_home.html", user=current_user)
-        return render_template("doc_home.html", user=current_user)
+            return render_template("doc_home.html", user=dom, book=book, comments=comment)
+
+
             
             
     
@@ -306,36 +348,42 @@ def dentist_dpmt():
 
 @auth.route('/logout')
 def logout():
-    session.pop('email', None)
+    session.pop('pemail', None)
     return redirect(url_for('auth.login'))
+
+@auth.route('/logout2')
+def logout2():
+    session.pop('demail', None)
+    return redirect(url_for('auth.doc_login'))
 
 @auth.route('/patient_home', methods=['GET','POST'])
 def patient_home():
 
     if request.method == 'POST':
-        domain = request.form.get('domain')
-        if domain == 'ENT':
-            return redirect(url_for('views.ent_appointment', user=current_user))
-        elif domain == 'Dentist':
-            return redirect(url_for('views.dentist_appointment', user=current_user))
-        elif domain == 'General Physician':
-            return redirect(url_for('views.physician_appointment', user=current_user))
-        elif domain == 'Pediatrician':
-            return redirect(url_for('views.pediatrician_appointment', user=current_user))
-    appointment = request.form.get('appointments')
-    if appointment:
-        return redirect(url_for('views.appointment_status', user=current_user))
-
-            
-            
-    return render_template("patient_home.html", user=current_user)
+        user = session['pemail']
+        user = User.query.filter_by(email = user).first()
+        x = request.form.get('appoint')
+        if (x is None):
+            domain = request.form.get('domain')
+            if domain == 'ENT':
+                return redirect(url_for('views.ent_appointment', user=user))
+            elif domain == 'Dentist':
+                return redirect(url_for('views.dentist_appointment', user=user))
+            elif domain == 'General Physician':
+                return redirect(url_for('views.physician_appointment', user=user))
+            elif domain == 'Pediatrician':
+                return redirect(url_for('views.pediatrician_appointment', user=user))
+        else:
+            return render_template('appointment_status.html', user=user) 
+    user = User.query.filter_by(email=session['pemail']).all()        
+    return render_template("patient_home.html", user=user)
 
 @auth.route('/dentist_appointment', methods=['GET','POST'])
 def dentist_appointment():
 
     if request.method == 'POST':
         name = request.form.get('button')
-        email=session['email']
+        email=session['pemail']
         user = AppointmentBooking.query.filter_by(email=email).first()
         if not user:           
             if name=='jacob':
@@ -361,15 +409,8 @@ def dentist_appointment():
             new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
             db.session.add(new_app)
             db.session.commit()
+            return render_template("dentist_appointment.html", user=current_user)
         if user:
-            htmlTrippleQuoted = """
-                <html>
-                <head></head>
-                <body>
-                <script>alert("Your Booking is under Process")</script>
-                </body>
-                </html>
-                """
             return render_template("dentist_appointment.html", user=current_user)
 
 @auth.route('/ent_appointment', methods=['GET','POST'])
@@ -377,7 +418,7 @@ def ent_appointment():
 
     if request.method == 'POST':
         name = request.form.get('button')
-        email=session['email']
+        email=session['pemail']
         user = AppointmentBooking.query.filter_by(email=email).first()
         if not user:
             if name=='vinod':
@@ -403,7 +444,8 @@ def ent_appointment():
             new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
             db.session.add(new_app)
             db.session.commit()
-        
+            return render_template("ent_appointment.html", user=current_user)
+        if user:
             return render_template("ent_appointment.html", user=current_user)
 
 @auth.route('/pediatrician_appointment', methods=['GET','POST'])
@@ -411,7 +453,7 @@ def pediatrician_appointment():
 
     if request.method == 'POST':
         name = request.form.get('button')
-        email=session['email']
+        email=session['pemail']
         user = AppointmentBooking.query.filter_by(email=email).first()
         if user:
             if name=='anush':
@@ -420,7 +462,7 @@ def pediatrician_appointment():
                 day='Sunday'
                 slot='4-7'
             elif name=='sreelata':
-                doctor='Dr.GSREELATA'
+                doctor='Dr.SREELATA'
                 domain='Pediatrician    '
                 day='Wednesday'
                 slot='9-11'
@@ -437,17 +479,18 @@ def pediatrician_appointment():
             new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
             db.session.add(new_app)
             db.session.commit()
+            return render_template("pediatrician_appointment.html", user=current_user)
         if user:
-            return render_template("ent_appointment.html", user=current_user)
+            return render_template("pediatrician_appointment.html", user=current_user)
 
 @auth.route('/physician_appointment', methods=['GET','POST'])
 def physician_appointment():
 
     if request.method == 'POST':
         name = request.form.get('button')
-        email=session['email']
+        email=session['pemail']
         user = AppointmentBooking.query.filter_by(email=email).first()
-        if user:
+        if not user:
             if name=='raji':
                 doctor='Dr.RAJI'
                 domain='Physician'
@@ -471,5 +514,6 @@ def physician_appointment():
             new_app = AppointmentBooking(email=email,doctor=doctor,domain=domain,day=day,slot=slot)
             db.session.add(new_app)
             db.session.commit()
+            return render_template("physician_appointment.html", user=current_user)
         if user:
-            return render_template("ent_appointment.html", user=current_user)
+            return render_template("physician_appointment.html", user=current_user)

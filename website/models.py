@@ -29,14 +29,15 @@ class Doctor(db.Model, UserMixin):
 
 class PatientComments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    patient_email = db.Column(db.String(150), db.ForeignKey('user.email'))
+    email = db.Column(db.String(150), db.ForeignKey('user.email'))
     comments = db.Column(db.String(250))
+    reply = db.Column(db.String(250))
     domain = db.Column(db.String(50))
     checked = db.Column((db.String(150)), default='False')
 
 class AppointmentBooking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    patient_email = db.Column(db.String(150), db.ForeignKey('user.email'))
+    email = db.Column(db.String(150), db.ForeignKey('user.email'))
     doctor = db.Column(db.String(150))
     domain = db.Column(db.String(50))
     day = db.Column(db.String(150))

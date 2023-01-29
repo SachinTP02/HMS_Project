@@ -50,7 +50,7 @@
 </div>
 
 <div class="topnav" id="myTopnav">
-<a href="/logout" title="LogOut" style="float:right;"><i class="fa fa-user"></i></a>
+<a href="/logout2" title="LogOut" style="float:right;"><i class="fa fa-user"></i></a>
 <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 </header>
@@ -76,179 +76,11 @@
 <h4>Are You</h4>
 <h1>Available</h1>
   
-{% if doc == "raji99@gmail.com" %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="RAJI">DR.RAJI</option>
-  </select>
-  <select name="doc_slot">
-  <option value="TUE8-12">TUESDAY (8-12)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc =='jitin99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="JITIN">DR.JITIN</option>
-  </select>
-  <select name="doc_slot">
-  <option value="WED11-4">WEDNESDAY (11-4)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-  
-{% elif doc == 'philips99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="PHILIPS">DR.PHILIPS</option>
-  </select>
-  <select name="doc_slot">
-  <option value="FRI2-7">FRIDAY (2-7)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'simon99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="SIMON">DR.SIMON</option>
-  </select>
-  <select name="doc_slot">
-  <option value="SAT9-11">SATURDAY (9-11)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'anush99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="ANUSH">DR.ANUSH</option>
-  </select>
-  <select name="doc_slot">
-  <option value="SUN4-7">SUNDAY (4-7)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'sreelata99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="SREELATA">DR.SREELATA</option>
-  </select>
-  <select name="doc_slot">
-  <option value="WED9-11">WEDNESDAY (9-11)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'latha99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="LATHA">DR.LATHA</option>
-  </select>
-  <select name="doc_slot">
-  <option value="THU2-7">THURSSDAY (2-7)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'leka99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="LEKA">DR.LEKA</option>
-  </select>
-  <select name="doc_slot">
-  <option value="FRI9-11">FRIDAY (9-11)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'jakob99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="JAKOB">DR.JAKOB</option>
-  </select>
-  <select name="doc_slot">
-  <option value="MON9-4">MONDAY (9-4)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'seema99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="SEEMA">DR.SEEMA</option>
-  </select>
-  <select name="doc_slot">
-  <option value="TUE2-6">TUESDAY (2-6)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'kasim99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="KASIM">DR.KASIM</option>
-  </select>
-  <select name="doc_slot">
-  <option value="FRI2-7">FRIDAY (2-7)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'vyga99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="VYGA">DR.VYGA</option>
-  </select>
-  <select name="doc_slot">
-  <option value="SUN10-1">SUNDAY (10-1)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'vinod99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="VINOD">DR.VINOD</option>
-  </select>
-  <select name="doc_slot">
-  <option value="SUN3-7">SUNDAY (3-7)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'gayathri99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="GAYATHRI">DR.GAYATHRI</option>
-  </select>
-  <select name="doc_slot">
-  <option value="MON10-2">MONDAY (10-2)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == 'kala99@gmail.com' %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="KALA">DR.KALA</option>
-  </select>
-  <select name="doc_slot">
-  <option value="WED11-4">THURSDAY (2-7)</option>
-  </select>
-  <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
-  </form>
-
-{% elif doc == "girija99@gmail.com" %}
-  <form method="POST">
-  <select name="doc_name" id="doc_name">
-  <option value="GIRIJA">DR.GIRIJA</option>
-  </select>
-  <select name="doc_slot">
-  <option value="SAT9-11">SATURDAY (9-11  )</option>
-  </select>
+{% if user%}
+  <form method="POST" action="/doc_home">
+    <input type = "text" name="doc_name" id="doc_name" value="Dr.{{user.first_name}}" readonly>
+    <input type = "text" name="doc_day" id="doc_day" value="{{book.day}}" readonly>
+    <input type = "text" name="doc_slot" id="doc_slot" value="{{book.slot}}" readonly>
   <button onclick="myFunction()" type="submit" class="btn2">CANCEL SLOT</button>
   </form>
 {% endif %}
@@ -256,8 +88,8 @@
 </div>
 </td>
 <td>
-<em>ABOUT US</em>
-<h1>Get better care for your health</h1>
+<em>Doctor</em>
+<h1>Together let's provide better care for people </h1>
 <p></p>
 <p> </p>
 </td>
@@ -268,33 +100,20 @@
 <section class="section3">
 <div class="cards">
 <div class="card">
-<a href="physician_dpmt"><section>
-<h1>General Physicians</h1>
 
-</section></a>
-</div>
-<div class="card">
-<a href="pediatrician_dpmt"><section>
-<h1>Pediatricians</h1>
+<section>
+{% for comment in comments%}
+    <h1>{{comment.comments}}</h1>
+    <form action="/doc_home" method="POST">
+    <input type="textarea" id="cmnt" name="cmnt" placeholder="Comment Your Reply Here" required><br>
+    <input type="hidden" id="cmnt_id" name="cmnt_id" value="{{comment.id}}" readonly>
+    <button class="btn2">POST</button></form>
+ 
+{% endfor %}
+</section>
 
-</section></a>
-</div>
-<div class="card">
-<a href="dentist_dpmt"><section>
-<h1>Dentist</h1>
-
-</section></a>
-</div>
-<div class="card">
-  <a href="ent_dpmt"><section>
-  <h1>ENT Specialist</h1>
-  
-  </section></a>
-  </div>
-  
-</div>
 <div class="content">
-<h1>Our Departments</h1>
+<h1>Patient Queries</h1>
 <p> </p>
 </div>
 </section>

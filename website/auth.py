@@ -43,7 +43,7 @@ def doc_login():
                 name = "Dr."+nametest
                 
                 dom = Doctor.query.filter_by(email = email).first()
-                comment = PatientComments.query.filter_by(checked = 'False', domain =dom.domain).all()
+                comment = PatientComments.query.filter_by(checked = 'False').all()
                 book = AppointmentBooking.query.filter_by(doctor = name).first()
                 
                 return render_template("doc_home.html", user = user, book = book , comments = comment)
@@ -377,6 +377,14 @@ def patient_home():
             return render_template('appointment_status.html', user=user) 
     user = User.query.filter_by(email=session['pemail']).all()        
     return render_template("patient_home.html", user=user)
+
+@auth.route('/expert_replies', methods=['GET','POST'])
+def expert_replies():
+    if request.method == 'POST':
+        sess = session['pemail']
+        user = User.query.filter_by(email=sess).first()
+        replie = PatientComments.query.filter_by(email = sess).all()
+        return render_template("patient_expert_replies.html", user=user, replies = replie)
 
 @auth.route('/dentist_appointment', methods=['GET','POST'])
 def dentist_appointment():

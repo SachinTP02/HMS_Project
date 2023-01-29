@@ -44,5 +44,3 @@ class AppointmentBooking(db.Model):
     slot = db.Column(db.String(150))
     status = db.Column(db.String(150), default='True')
 
-
-

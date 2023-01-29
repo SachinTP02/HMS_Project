@@ -35,14 +35,18 @@ def doc_login():
         
         user = Doctor.query.filter_by(email=email).first()
         if user:
-            if check_password_hash(user.password, password):
+            dom = Doctor.query.filter_by(email = email).first()
+            if dom.varified =='False':
+                flash('Admin Verification Is Pending')
+                return render_template("doc_login.html", boolean=True)
+            elif check_password_hash(user.password, password):
                 flash('Logged in successfully!', category = 'success')
                 
                 session['demail'] = email
                 nametest = user.first_name.upper()
                 name = "Dr."+nametest
                 
-                dom = Doctor.query.filter_by(email = email).first()
+                
                 comment = PatientComments.query.filter_by(checked = 'False').all()
                 book = AppointmentBooking.query.filter_by(doctor = name).first()
                 
@@ -52,6 +56,44 @@ def doc_login():
         else:
             flash('Email does not exist.', category = 'error')
     return render_template("doc_login.html", boolean=True)
+
+
+@auth.route('/admin_login', methods=['GET','POST'])
+def admin_login():
+    if request.method == 'POST':
+        email = request.form.get('admin_email')
+        password = request.form.get('admin_password')
+        
+        user = Doctor.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash('Logged in successfully!', category = 'success')
+                
+                session['demail'] = email
+                doc = Doctor.query.filter_by(varified = 'False').all()
+                
+                return render_template("admin_home.html", user = user, doc = doc)
+            else:
+                flash('Incorrect password, try again.', category = 'error')
+        else:
+            flash('Email does not exist.', category = 'error')
+    return render_template("admin_login.html", boolean=True)
+
+
+
+@auth.route('/admin_home', methods=['GET', 'POST'])
+def admin_home():
+    if request.method == 'POST':
+        ver = request.form.get('varification')
+        id = request.form.get('doc_id')
+        usr = Doctor.query.filter_by(doc_id = id).first()
+        usr.varified = 'True'
+        db.session.commit()
+        doc = Doctor.query.filter_by(varified = 'False').all()
+        sess = session['demail']
+        user = Doctor.query.filter_by(email=sess).first()
+        return render_template("admin_home.html", doc=doc, user = user)
+        
 
 @auth.route('/sign-up', methods=['GET','POST'])
 def sign_up():

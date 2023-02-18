@@ -20,9 +20,8 @@
       <div class="content">
         <div class="container">
           <div class="pricing-table">
+          {% for appointmentbooking in user.appointments %}
           <ul class="col-price">
-            
-            {% for appointmentbooking in user.appointments %}
             <li class="header">{{appointmentbooking.domain}}</li>
             <li class="price"><span>{{appointmentbooking.doctor}}</span></li>
             <li>{{appointmentbooking.day}}</li>
@@ -32,8 +31,8 @@
             {% elif appointmentbooking.status == 'False' %} 
               <li class="get-it" onclick="myFunction2()"><button>STATUS</button></li>
             {% endif %}
-            {% endfor %}
             </ul>
+            {% endfor %}
           </div>
         </div>
         </div>

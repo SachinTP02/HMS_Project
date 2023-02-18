@@ -87,7 +87,7 @@
             <td data-label="Title">{{doctor.domain}}</td>
             <td data-label="Website">{{doctor.email}}</td>
             <td data-label="Role">{{doctor.doc_id}}</td>
-            <td data-label="Role"><form action ="/admin_home" method="POST"><button type="submit" name="varification" id="varification" class="btn btn-primary">CONFIRm</button><input type="hidden" value="{{doctor.doc_id}}" name="doc_id" id="doc_id"></form></td>
+            <td data-label="Role"><form action ="/admin_home" method="POST"><button type="submit" name="varification" id="varification" class="btn btn-primary">CONFIRM</button><input type="hidden" value="{{doctor.doc_id}}" name="doc_id" id="doc_id"></form></td>
           </tr>
           {% endfor %}
           {% endif %}

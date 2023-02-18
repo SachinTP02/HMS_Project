@@ -19,16 +19,36 @@
       </header>
       <div class="content">
         <div class="container">
+          <!--
+          {%if domm%}          
+          {%for doctor in domm%}
           <div class="pricing-table">
           <ul class="col-price">
-            <li class="header">Otolaryngologist</li>
-            <li class="price"><span>Dr.VINOD</span></li>
-            <li>Spc. Endoscopic Surgeries</li>
-            <li>vinod999@gmail.com</li>
-            <li>Available : SUNDAY</li>
-            <li>Slot : 3-7(PM)</li>
-            <li class="get-it"><form method="POST"><button onclick="myFunction()" type="submit" id="button" name="button" value="vinod">Book now</button></form></li>
+            <li class="header">{{doctor.domain}}</li>
+            <li class="price"><span>{{doctor.first_name}}</span></li>
+            <li>{{doctor.specialization}}</li>
+            <li>{{doctor.email}}</li>
+            <li>{{doctor.day}}</li>
+            <li>{{doctor.slot}}</li>
+            <li class="get-it"><form method="POST"><button onclick="myFunction()" type="submit" id="button" name="button" value="{{domm.first_name}}">Book now</button></form></li>
             </ul>
+            {% endfor %}
+            {% else %}
+              <p>No doctors found with the specified domain.</p>
+            {%endif%}
+           -->
+            
+           
+            <div class="pricing-table">
+              <ul class="col-price">
+                <li class="header">Otolaryngologist</li>
+                  <li class="price"><span>Dr.VINOD</span></li>
+                <li>Spc. Ear, nose, throat</li>
+                <li>vinod999@gmail.com</li>
+                <li>Available : SUNDAY</li>
+                <li>Slot : 3-7(PM)</li>
+                <li class="get-it"><form method="POST"><button onclick="myFunction()" type="submit" id="button" name="button" value="gayathri">Book now</button></form></li>
+                </ul>
             <ul class="col-price">
             <li class="header">Otolaryngologist</li>
               <li class="price"><span>Dr.GAYATHRI</span></li>
@@ -56,7 +76,10 @@
             <li>Slot : 9-11(AM)</li>
             <li class="get-it"><form method="POST"><button onclick="myFunction()" type="submit" id="button" name="button" value="girija">Book now</button></form></li>
             </ul>
+           
           </div>
+          
+          
         </div>
         </div>
       </div>

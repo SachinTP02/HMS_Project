@@ -360,7 +360,7 @@ def doc_home():
             book = AppointmentBooking.query.all()
             sess =  session['demail']
             dom = Doctor.query.filter_by(email = sess).first()
-            comment = PatientComments.query.filter(PatientComments.checked == 'False', PatientComments.domain == dom.domain).all()
+            comment = PatientComments.query.filter_by(PatientComments.checked == 'False' and PatientComments.domain == dom.domain).all()
             #comment = session.query(PatientComments)
             new = PatientComments.query.filter_by(id = z).first()
             new.reply = y

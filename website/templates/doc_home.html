@@ -103,12 +103,13 @@
 
 <section>
 {% for comment in comments%}
+{% if comment.domain == user.domain %}
     <h1>{{comment.comments}}</h1>
     <form action="/doc_home" method="POST">
     <input type="textarea" id="cmnt" name="cmnt" placeholder="Comment Your Reply Here" required><br>
     <input type="hidden" id="cmnt_id" name="cmnt_id" value="{{comment.id}}" readonly>
     <button class="btn2">POST</button></form>
- 
+    {% endif %}
 {% endfor %}
 </section>
 
